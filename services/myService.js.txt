@@ -1,0 +1,32 @@
+//var app = angular.module('myApp', []);
+(function() {
+    app.service('myService', ['$timeout', '$q', '$http', function($timeout, $q, $http) {
+
+        var service = {};
+
+        var request = {
+            method: 'get',
+            url: 'employees.json',
+            contentType: 'application/json',
+            datatype: 'json'
+        }
+        service.getEmpInfo = function() {
+            var obj = $q.defer();
+            $timeout(function() {
+                $http(request).then(function success(response) {
+                    // successfull response from status.json
+                    obj.resolve(response.data.employees);
+                }, function failure(errorMessage) {
+                    obj.reject("There is Some Error");
+                }, function notify(message) {
+                    obj.notify("Please wait processing...!!");
+                })
+            }, 10000);
+
+            return obj.promise;
+        }
+
+        return service;
+
+    }])
+})();
