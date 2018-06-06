@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+    <label> Enter the price range between {{min}} - {{max}}</label>
+    <input type="range" min="{{min}}" max="{{max}}" ng-model="selectedValue"/><br/>
+    Selected price : {{selectedValue}}
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', ['$scope', function ($scope) {
+            $scope.min = 100;
+            $scope.max = 1000;
+            $scope.selectedValue = 500;
+
+        }])
+    </script>
+</body>
+</html>

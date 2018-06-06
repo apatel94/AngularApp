@@ -1,0 +1,35 @@
+﻿<div class="panel panel-primary">
+    <div class="panel panel-heading" style="cursor:pointer" ng-click="headerCollapse()">
+        {{user.name}}
+    </div>
+    <div class="panel panel-body" ng-show="!collapsed">
+        <!--<div ng-show="!collapsed" ng-click="onAddressCollapsed()">
+            <h3> Address : </h3>
+            {{user.address.city}}<br />
+            {{user.address.state}}<br />
+            {{user.address.country}}<br />
+            {{user.address.Pin}}
+        </div>-->
+        <address> </address>
+        <div>
+            <h3> Friends: </h3>
+            <ol>
+                <li ng-repeat="friend in user.friends">
+                    {{friend}}
+                    <!-- remove the logic here and include in a driective-->
+                     <remove-friend method="eliminateFriend(friend)"> </remove-friend>
+                    <!--<span ng-show="!remove" style="cursor:pointer" ng-click="removeFriend()" class="glyphicon glyphicon-remove"></span>
+                    <span ng-show="remove">
+                        <button class="btn btn-xs btn-success" ng-click="removeFriend()">Ignore</button>
+                        <button class="btn btn-xs btn-danger"> Remove</button>
+                    </span>-->
+                </li>
+            </ol>
+        </div>
+    </div>
+    <div>
+        <button ng-show="!user.Rank" class="btn btn-success" ng-click="onClick()">Knock Me!</button>
+        <span ng-show="user.Rank">{{user.Rank}}</span>
+    </div>
+
+</div>

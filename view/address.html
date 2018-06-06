@@ -1,0 +1,10 @@
+<div style="cursor: pointer" ng-show="!collapsed" ng-click="onAddressCollapsed()">
+    <h3> Address : </h3>
+    {{user.address.city}}
+    <br/> {{user.address.state}}
+    <br/> {{user.address.country}}
+    <br/> {{user.address.Pin}}
+</div>
+<div style="cursor: pointer" ng-show="collapsed" ng-click="onAddressDisplay()">
+    {{user.address.city}}.......
+</div>

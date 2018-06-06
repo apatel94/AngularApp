@@ -1,0 +1,104 @@
+﻿<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+<link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<head>
+    <title>Angular JS Routing</title>
+
+
+</head>
+
+<body ng-app="routeApp">
+    <div class="page-header jumbotron text-center">
+        <h2>AngularJS MVC using $routeProvider Application</h2>
+        <p>
+            <h2><a href="#addStudent">ADD STUDENT</a></h2>
+            <h2><a href="#viewStudent">VIEW STUDENT DETAILS</a></h2>
+            <h2><a href="#deleteStudent">DELETE STUDENT DETAILS</a></h2>
+        </p>
+        <div ng-view></div>
+    </div>
+
+
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+
+    <script>
+        var app = angular.module('routeApp', ['ngRoute']);
+        app.config(['$routeProvider', function($routeProvider) {
+            $routeProvider.
+            when('/addStudent', {
+                    templateUrl: './AddStudent.html',
+                    controller: 'addCtrl'
+
+                })
+                .when('/viewStudent', {
+                    templateUrl: './ViewStudent.html',
+                    controller: 'viewCtrl'
+
+                })
+                .when('/deleteStudent', {
+                    templateUrl: './DeleteStudent.html',
+                    controller: 'deleteCtrl'
+
+                })
+
+            .otherwise({
+                redirectTo: '/addStudent'
+            })
+        }])
+        app.controller('addCtrl', ['$scope', 'mySrv', function($scope, mySrv) {
+            $scope.Add = function() {
+                $scope.result = mySrv.addStudentDetails($scope.name, $scope.number);
+            }
+
+
+        }])
+        app.controller('viewCtrl', ['$scope', 'mySrv', function($scope, mySrv) {
+
+            if (mySrv.student != undefined) {
+                $scope.found = true;
+                $scope.name = mySrv.student.Sname;
+                $scope.number = mySrv.student.Sno;
+            } else {
+                $scope.found = false;
+            }
+
+
+
+
+        }])
+        app.controller('deleteCtrl', ['$scope', 'mySrv', function($scope, mySrv) {
+            $scope.result = mySrv.deleteStudents();
+        }])
+        app.factory('mySrv', [function() {
+            var service = {};
+
+            service.addStudentDetails = function(name, number) {
+                service.student = {};
+                service.student.Sname = name;
+                service.student.Sno = number;
+                if (service.student.Sname != undefined && service.student.Sno != undefined) {
+                    return "Student Details Added Successfully!!";
+
+                } else {
+                    return "Enter The Data"
+                }
+            }
+            service.deleteStudents = function() {
+                service.student = undefined;
+                return "Students Details Deleted Successfully....!";
+            }
+
+
+
+            return service;
+        }])
+    </script>
+</body>
+
+</html>

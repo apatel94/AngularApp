@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <div>
+        <label>The OutPut is : </label> {{displayText}}
+    </div>
+
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', ['$scope', 'mySrv', function($scope, mySrv) {
+            $scope.displayText = mySrv.appName;
+
+        }])
+
+        app.provider('mySrv', function() {
+            // local variable - not accessible to other who injected that service.
+            var display = false;
+            //Configurable properties--- value=T/F
+            this.displayTime = function(value) {
+                display = value;
+            }
+
+            //define a property
+            this.$get = function() {
+                //exec. block
+                var appName = "Today is Tuesday";
+                if (display) {
+                    appName = appName + " It is 1st May 2018 " + new Date();
+
+
+                } else {
+                    appName = appName + " No Date ";
+                }
+                return {
+                    appName: appName
+                }
+            }
+
+
+        });
+        app.config(['mySrvProvider', function(mySrvProvider) {
+            mySrvProvider.displayTime(true);
+
+        }])
+    </script>
+
+</body>
+
+</html>

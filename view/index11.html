@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title></title>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.0/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+
+</head>
+
+<body ng-app="RoutingDemo">
+    <h1 class="page-header text-center">Angular Routing Demo </h1>
+
+
+
+    <div ng-view></div>
+
+    <script>
+        var app = angular.module('RoutingDemo', ['ngRoute']);
+        app.config(['$routeProvider', function($routeProvider) {
+            $routeProvider
+                .when('/logIn', {
+                    templateUrl: './login.html',
+                    controller: 'logInCtrl'
+
+                })
+                .when('/studentDetail/:uname/:pwd', {
+                    templateUrl: './student.html',
+                    controller: 'studentCtrl'
+
+                })
+                .when('/saveDetails', {
+                    controller: 'saveCtrl',
+                    templateUrl: './saveDetails.html'
+
+                })
+                .otherwise({
+                    redirectTo: '/logIn'
+                })
+
+        }])
+        app.controller('logInCtrl', ['$scope', '$location', function($scope, $location) {
+            //$location is a service used to navigate between pages using buttons.
+            //$location.path(-)
+            $scope.onSubmit = function(username, password) {
+                $location.path('/studentDetail/:' + username + '/:' + password);
+
+            }
+        }]);
+        app.controller('studentCtrl', ['$scope', '$routeParams', function($scope, $routeParams) {
+            $scope.uname = $routeParams.uname;
+            $scope.pwd = $routeParams.pwd;
+
+        }])
+    </script>
+</body>
+
+</html>

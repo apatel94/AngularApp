@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <title>Document</title>
+    <style>
+        div {
+            text-align: center;
+            padding: 10px;
+        }
+        
+        th,
+        tr,
+        td {
+            padding: 5px;
+            border: crimson 1px solid;
+        }
+    </style>
+
+</head>
+
+<body NG-APP="filterApp" ng-controller="filterCtrl">
+    <div class="container" id="maindiv">
+        <h1>Angular Filters With multiple values</h1>
+        <hr id="line">
+        <div class="row">
+            <div class="form-group">
+                <form>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" ng-model="pnum" placeholder="parts_number" />
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" class="form-control" ng-model="partdesc" placeholder="parts_description" />
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div>
+            <table>
+                <tr>
+                    <th>Part Number</th>
+                    <th>Part Desc</th>
+                </tr>
+                <tr ng-repeat="part in parts | filter : {  part_no : pnum, descr : partdesc}">
+                    <td>{{part.part_no}}</td>
+                    <td>{{part.descr}}</td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module('filterApp', []);
+        app.controller('filterCtrl', ['$scope', function($scope) {
+            $scope.parts = [{
+                "part_no": "aaa",
+                "descr": "aaa123"
+            }, {
+                "part_no": "bbb",
+                "descr": "abc45"
+            }, {
+                "part_no": "ccc",
+                "descr": "ituo3"
+            }, {
+                "part_no": "ddd",
+                "descr": "safsf889"
+            }, {
+                "part_no": "eee",
+                "descr": "sdaf125"
+            }];
+
+        }])
+    </script>
+
+</body>
+
+</html>

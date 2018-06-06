@@ -1,0 +1,20 @@
+<body>
+
+    <div class="jumbotron">
+        <form class="form-horizontal" name="form1">
+            <div>
+                <input type="text" class="form-group" placeholder="Enter Student Name" ng-model="name" required>
+
+                <input type="number" min="-9999" max="9999" class="form-group" placeholder="Enter Student Number" ng-model="number" required>
+
+            </div>
+            <div>
+                <button type="submit" ng-disabled="form1.$invalid" class="btn-success" value="Submit" ng-click="Add()">CLICK ME!</button>
+            </div>
+
+        </form>
+        <div>
+            <h3>{{result}}</h3>
+        </div>
+    </div>
+</body>

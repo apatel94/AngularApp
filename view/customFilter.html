@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+</head>
+<body ng-app="customFilterApp" ng-controller="customFilterCtrl">
+<label>Enter the string to filter it: </label>
+    <input type="text" placeholder="Enter string" ng-model="userData"/> <br/>
+  Without a filter : {{userData}}<br/>
+  With a custom filter : {{userData | myFilter}} <br/>
+  With a custom filter in uppercase : {{userData | myFilter : true}} <br/>
+  With a custom filter in uppercase and Welcome as string : {{userData | myFilter : true : 'Welcome'}}
+
+    
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script>
+        var app = angular.module('customFilterApp', []);
+
+        app.controller('customFilterCtrl', ['$scope', function ($scope) {
+            $scope.userData = 'montreal';
+        }]);
+        app.filter('myFilter', function () {
+            return function (data, optionalParameter1, optionalParameter2) {
+                // fill a logic here to fullfill the requirement.
+                // Eg: Reverse the string.
+                // data holds the user entered data (Ex: montreal)
+
+                var output = '';
+
+                for (var i = 0; i <= data.length ; i++) {
+                    var eachChar = data.charAt(i); // for a 1st iteration : M, O, N
+                    output = eachChar + output; // for a first iteration : M, OM, NOM
+                }
+                if (optionalParameter1 !== undefined) { // if optional param 1 is defined? 
+                    if (optionalParameter2 !== undefined) { // if optional param 2 is defined? - yes : Add welcome string
+                        output = optionalParameter2 + ' ' + output.toUpperCase();
+                    } else { // param 2 is not defined, just convert to uppercase. 
+                        output = output.toUpperCase();
+                    }
+                }
+                return output;
+
+            }
+
+        })
+    </script>
+</body>
+</html>

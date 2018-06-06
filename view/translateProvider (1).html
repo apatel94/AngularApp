@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-translate/dist/angular-translate.min.js"></script>
+    <script src="../node_modules/angular-translate/dist/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <div>
+        <h2> <a href="" ng-click="onFrench()">FR</a>
+            <a href="" ng-click="onEnglish()">EN</a>
+            <a href="" ng-click="onChinees()">ZH</a>
+        </h2>
+    </div>
+    <div>
+        user selected language is {{language}} - {{'WAIT' | translate}} <br/> {{'ERROR' | translate}}
+    </div>
+
+    <script>
+        var app = angular.module('myApp', ['pascalprecht.translate']);
+        //translate is an inbuilt service, created using .provider. 
+        app.config(['$translateProvider', function($translateProvider) {
+
+            // configures staticFilesLoader to the Json files
+            $translateProvider.useStaticFilesLoader({
+                prefix: 'str-',
+                suffix: '.json'
+            });
+
+            // load 'en' as a default language during the startup
+            $translateProvider.preferredLanguage('en');
+            $translateProvider.useSanitizeValueStrategy('escapeParameters');
+        }]);
+
+        app.controller('myCtrl', ['$scope', '$translate', function($scope, $translate) {
+
+            $scope.onFrench = function() {
+                $translate.use('fr');
+                $scope.language = "French";
+            };
+            $scope.onEnglish = function() {
+                $translate.use('en');
+                $scope.language = "English";
+            };
+            $scope.onChinees = function() {
+                $translate.use('zh');
+                $scope.language = "Chinees";
+            };
+
+        }])
+    </script>
+</body>
+
+</html>

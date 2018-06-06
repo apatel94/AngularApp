@@ -1,0 +1,86 @@
+<!DOCTYPE <!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.bundle.min.js"></script>
+
+
+    <style>
+        #divEO {
+            margin-top: 15px;
+        }
+        
+        #input {
+            margin-left: 10px;
+            border: 0;
+            width: 100%
+        }
+    </style>
+
+</head>
+
+<body ng-app="MyApp" ng-controller="myCtrl">
+    <div class="container-fluid">
+
+        <div class="row-xs">
+            <div class="page-header text-center">
+                <h1> Ng-Show, Ng-Hide, Ng-click</h1>
+            </div>
+            <div class="col-xs" id="input">
+                <lable>EnterNumber:</lable>
+                <input type="number" ng-model="number" ng-change="onChange()" />
+
+
+            </div>
+            <div class="row-xs jumbotron text-center" ng-show="isVisible" id="divEO">
+                <div ng-show="isEven">
+                    <p>This is Even</p>
+                </div>
+                <div ng-hide="isEven">
+                    <p>This is Odd</p>
+                </div>
+            </div>
+            <div class="row-xs jumbotron text-center" ng-show="isZero" id="divEO">
+                <div ng-show="isZero">
+                    {{message}}
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        var app = angular.module('MyApp', []);
+
+        app.controller('myCtrl', ['$scope', function($scope) {
+
+
+            $scope.onChange = function() { // $scope=your viewport or browser's display;
+                $scope.isZero = false;
+                $scope.counter = $scope.number;
+                if ($scope.counter === 0) {
+                    $scope.isVisible = false;
+                    $scope.isZero = true;
+                    $scope.message = "Zero is Even";
+                } else {
+                    $scope.isEven = $scope.number % 2 === 0;
+                    $scope.isVisible = true;
+                }
+
+            }
+        }])
+    </script>
+
+
+</body>
+
+</html

@@ -1,0 +1,134 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <user-info-card user="user1"> </user-info-card>
+    <user-info-card user="user2"> </user-info-card>
+    <user-info-card user="user3"> </user-info-card>
+    <script>
+       angular.module('myApp', [])
+       var app = angular.module('myApp',[]);
+        app.controller('myCtrl', ['$scope', function ($scope) {
+
+            $scope.user1 = {
+                name: 'Alex',
+                address: {
+                    city: 'Montreal',
+                    state: 'QC',
+                    country: 'Canada',
+                    Pin: 'H3V 123'
+                },
+                friends: [
+                    'Bob',
+                    'Raj',
+                    'Jack'
+                ]
+            };
+            $scope.user2 = {
+                name: 'Bob',
+                address: {
+                    city: 'Toronto',
+                    state: 'ON',
+                    country: 'Canada',
+                    Pin: 'H3V 123'
+                },
+                friends: [
+                    'Bob',
+                    'Raj',
+                    'Jack'
+                ]
+            };
+            $scope.user3 = {
+                name: 'Bob',
+                address: {
+                    city: 'Toronto',
+                    state: 'ON',
+                    country: 'Canada',
+                    Pin: 'H3V 123'
+                },
+                friends: [
+                    'Bob',
+                    'Raj',
+                    'Jack'
+                ]
+            };
+        }]);
+        app.directive("userInfoCard", function () {
+
+            return {
+                templateUrl: "userInfoCard.html",
+                scope: {
+                    user: "=user"
+                },
+                controller: function ($scope) {
+                    $scope.collapsed = false;
+                    $scope.onClick = function () {
+                        $scope.user.Rank = "Rank#1";
+                    },
+                    $scope.headerCollapse = function () {
+                        $scope.collapsed = !$scope.collapsed;
+                    },
+                    // Will be called from remove friend directive when user clicks on Remove button.
+                    $scope.eliminateFriend = function (friend) {
+                        //to get the index of friend from user object.
+                        var index = $scope.user.friends.indexOf(friend);
+                        $scope.user.friends.splice(index, 1);
+                    }
+                    
+                   
+                }
+            }
+        });
+
+        app.directive('address', function () {
+
+            return {
+                templateUrl: "address.html",
+                restrictTo: 'E',
+                scope: true,
+                controller: function ($scope) {
+                    $scope.collapsed = false;
+
+                    $scope.onAddressCollapsed = function () {
+                        $scope.collapsed = !$scope.collapsed;
+                    }
+
+                    $scope.onAddressDisplay = function () {
+                        $scope.collapsed = !$scope.collapsed;
+                    }
+                }
+            }
+        });
+        app.directive('removeFriend', function () {
+
+            return {
+
+                templateUrl: 'removeFriend.html',
+                scope: {
+                    //taking the 'method =' from remove friend directive and assign it to local variable.
+                    // & indicates passing method
+                    // = indicates passing data (user = user1 in inital html)
+                    notifyParent : '&method'// eliminateFried()
+                },
+                controller: function ($scope) {
+                    $scope.remove = false;
+                    $scope.removeFriend = function () {
+                        $scope.remove = !$scope.remove;
+                    }
+                    $scope.confirmRemove = function () {
+                        // When user clicks confirm remove call parent method (eliminateFriend())
+                        $scope.notifyParent();
+                    }
+
+                }
+            }
+        })
+    </script>
+</body>
+</html>

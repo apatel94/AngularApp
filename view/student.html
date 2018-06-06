@@ -1,0 +1,67 @@
+﻿<div class="panel panel-primary ">
+    <h2 class="panel panel-heading text-center">ADD STUDENT DETAILS</h2>
+    <div class="panel panel-body">
+        <div class="panel panel-info">
+            Welcome {{uname}} <br />
+            <br /> Your pwd is {{pwd}}
+            <br />
+            <a href="#/logIn">Log out</a>
+        </div>
+
+        <form>
+            <div>
+                <label for="firstName">First Name</label>
+                <input type="text" id="firstName" ng-model="Fname" />
+            </div>
+            <div>
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" ng-model="Lname" />
+            </div>
+
+            <div>
+                <label for="dob">DoB</label>
+                <input type="date" id="dob" ng-model="DOB" />
+            </div>
+
+            <div>
+                <label for="gender">Gender</label>
+
+                <select id="gender" ng-model="Gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+
+            </div>
+
+            <div>
+
+                <div>
+                    <span><b>Training Location</b></span>
+                    <div class="radio">
+                        <label><input value="online" type="radio" name="training" ng-model="Rbutton"/>Online</label>
+                    </div>
+                    <div class="radio">
+                        <label><input value="onsite" type="radio" name="training" ng-model="Rbutton"/>OnSite</label>
+                    </div>
+                </div>
+                <div>
+                    <span><b>Main Subjects</b></span>
+                    <div class="checkbox">
+                        <label><input type="checkbox" ng-model=""/>Maths</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" />Physics</label>
+                    </div>
+                    <div class="checkbox">
+                        <label><input type="checkbox" />Chemistry</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <input type="submit" value="Save" class="btn btn-primary col-sm-offset-3" ng-click="onSave()" />
+                <input type="reset" value="Reset" class="btn btn-danger col-sm-offset-3" ng-click="onReset()" />
+            </div>
+        </form>
+    </div>
+</div>

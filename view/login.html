@@ -1,0 +1,18 @@
+﻿<div class="panel panel-primary container-fluid">
+    <h2 class="panel panel-heading"> This is Log In html page</h2>
+    <div class="panel panel-body">
+        <form name="form">
+            <div class="form-group-xs">
+                <div class="col-xs-6">
+                    <input type="text" placeholder="Enter User Name" ng-model="uname" class="form-control" required><br>
+                </div>
+                <div class="col-xs-6">
+                    <input type="password" placeholder="Enter User Name" ng-model="pwd" class="form-control" required><br>
+                </div>
+                <div class="col-xs-3">
+                    <input type="submit" value="LogIn" ng-disabled="form.$invalid" ng-click="onSubmit(uname,pwd)" class="btn btn-success btn-block btn-lg">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

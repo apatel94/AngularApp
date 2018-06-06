@@ -1,0 +1,56 @@
+﻿{
+  "students" : [
+    {
+      "id": 101,
+      "name": "Jhon",
+      "Skill": "Angular",
+      "Status": "Good",
+	  "AdditionalSkills" : ["Angular","PHP","QA"],
+	  "Location" : "Montreal"
+    },
+    {
+      "id": 102,
+      "name": "Claudio",
+      "Skill": "Java",
+      "Status": "Good",
+	  "AdditionalSkills" : ["Java","B.I","Node"],
+	  "Location" : "Torronto"
+    },
+    {
+      "id": 103,
+      "name": "King",
+      "Skill": ".Net",
+      "Status": "Good",
+	  "AdditionalSkills" : ["Oracle","SAP","Node"],
+	  "Location" : "Ontario"
+    },
+    {
+      "id": 104,
+      "name": "Jonatan",
+      "Skill": "Java",
+      "Status": "Bad",
+	  "AdditionalSkills" : ["Angular","SQl","Node"],
+	  "Location" : "Quebec"
+    },
+    {
+      "id": 105,
+      "name": "Pascal",
+      "Skill": ".Net",
+      "Status": "NeedsImprovemnt",
+	  "AdditionalSkills" : ["Express","ReactJS","Mongo"],
+	  "Location": "Vancover"
+    },
+     {
+      "id": 106,
+      "name": "Naji",
+      "Skill": "Web",
+      "Status": "Good",
+	  "AdditionalSkills" : ["BigData","SQl","Hadoop"],
+	  "Location" : "Missisuga"
+    }
+  ]
+}
+
+ 
+
+

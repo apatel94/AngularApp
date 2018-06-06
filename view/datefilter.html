@@ -1,0 +1,51 @@
+<html>
+
+<head>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <style>
+        body,
+        {
+            background-color: rgba(255, 217, 0, 0.897);
+        }
+        
+        #div1 {
+            background-color: rgba(255, 217, 0, 0.507);
+            padding: 0;
+            margin: 09px;
+            border: none;
+            width: 100%;
+        }
+        
+        #btn1 {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            font-size: 70;
+            border-radius: 25%;
+            border: orangered 1px solid;
+        }
+    </style>
+
+</head>
+
+<body ng-app='myApp' ng-controller="myCtrl">
+    my date without filter : {{mydate}}<br> Today's Date is: <span> {{mydate|date: 'yyyy/MM/dd THH:MM:ss:ms'}}</span><br> Month is: <span> {{mydate|date: 'MMMM'}}</span>
+    <br> Day is: <span> {{mydate|date: 'EEEE'}}</span>
+
+
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', ['$scope', function($scope) {
+
+            $scope.mydate = new Date();
+
+
+
+        }])
+    </script>
+
+    </div>
+
+</body>
+
+</html>

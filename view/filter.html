@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    How many rows you want to display in the table?
+    <input type="number" min="1" max="100" ng-model="number" />
+
+    <table>
+        <tr>
+
+            <th> First Name</th>
+            <th> Last Name</th>
+            <th> Salary</th>
+            <th> Gross</th>
+            <th> Age</th>
+            <th> Dept</th>
+            <th> Designation</th>
+        </tr>
+        <tr ng-repeat="employee1 in employees | limitTo: number | orderBy : 'fname'">
+            <td>{{employee1.fname | uppercase}}</td>
+            <td>{{employee1.lname | lowercase}}</td>
+            <td>{{employee1.basesalary | currency:2}}</td>
+            <td>{{employee1.Gross|currency:'$' :2}}</td>
+            <td>{{employee1.age}}</td>
+            <td>{{employee1.department}}</td>
+            <td>{{employee1.designation}}</td>
+        </tr>
+
+    </table>
+
+
+
+    <script>
+        // creating module which was declared in HTML with ng-app
+        // ng-repeat only:filters...
+        var app = angular.module('myApp', [])
+
+        app.controller('myCtrl', ['$scope', function($scope) {
+            // Hardcoded data from external sources.
+            $scope.number = 2;
+
+            $scope.employees = [{
+                fname: 'Jhon',
+                lname: 'B',
+                basesalary: '89899',
+                Gross: '8888',
+                age: '23',
+                department: 'IT',
+                designation: 'BA'
+            }, {
+                fname: 'Bob',
+                lname: 'B',
+                basesalary: '98989.0331',
+                Gross: '8888',
+                age: '33',
+                department: 'Marketing',
+                designation: 'Sales'
+            }, {
+                fname: 'Fish',
+                lname: 'F',
+                basesalary: '78787',
+                Gross: '8888',
+                age: '40',
+                department: 'Fin',
+                designation: 'Advisor'
+            }, {
+                fname: 'Jean',
+                lname: 'J',
+                basesalary: '89989.5564',
+                Gross: '8888',
+                age: '50',
+                department: 'IT',
+                designation: 'QA'
+            }, {
+                fname: 'Jean',
+                lname: 'J',
+                basesalary: '89989',
+                Gross: '54654',
+                age: '50',
+                department: 'IT',
+                designation: 'QA'
+            }, {
+                fname: 'Jean',
+                lname: 'J',
+                basesalary: '8998999',
+                Gross: '8888',
+                age: '50',
+                department: 'IT',
+                designation: 'QA'
+            }, {
+                fname: 'Jean',
+                lname: 'J',
+                basesalary: '8998999',
+                Gross: '8888',
+                age: '50',
+                department: 'IT',
+                designation: 'QA'
+            }, {
+                fname: 'Jean',
+                lname: 'J',
+                basesalary: '8998999',
+                Gross: '8888',
+                age: '50',
+                department: 'IT',
+                designation: 'WEBDEV'
+            }]
+
+
+
+        }])
+    </script>
+</body>
+
+</html>

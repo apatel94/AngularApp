@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+    <style>
+        .center-all {
+            padding: 50%;
+            margin: -8px;
+            width: 16px;
+            height: 16px;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid gray;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <div ng-show="!responseReceived">
+        <div class="center-all">
+            <i class="fa fa-spinner fa-spin"></i>
+            <h3>Accessing database</h3>
+        </div>
+    </div>
+
+    <div ng-show="responseReceived">
+
+        <table>
+            <tr>
+                <th> First Name</th>
+                <th> Last Name</th>
+                <th> Salary</th>
+                <th> Age</th>
+                <th> Dept</th>
+                <th> Designation</th>
+            </tr>
+            <tr ng-repeat="employee1 in employees">
+                <td>{{employee1.fname}}</td>
+                <td>{{employee1.lname }}</td>
+                <td>{{employee1.salary}}</td>
+                <td>{{employee1.age}}</td>
+                <td>{{employee1.department}}</td>
+                <td>{{employee1.designation}}</td>
+            </tr>
+
+        </table>
+    </div>
+
+    <script>
+        // creating module which was declared in HTML with ng-app
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', ['$scope', '$timeout', function($scope, $timeout) {
+            //default 
+            $scope.responseReceived = false;
+
+            $timeout(function() {
+                $scope.responseReceived = true;
+
+                $scope.employees = [{
+                    fname: 'Jhon',
+                    lname: 'B',
+                    salary: '89899',
+                    age: '23',
+                    department: 'IT',
+                    designation: 'BA'
+                }, {
+                    fname: 'Bob',
+                    lname: 'B',
+                    salary: '98989',
+                    age: '33',
+                    department: 'Marketing',
+                    designation: 'Sales'
+                }, {
+                    fname: 'Fish',
+                    lname: 'F',
+                    salary: '78787',
+                    age: '40',
+                    department: 'Fin',
+                    designation: 'Advisor'
+                }, {
+                    fname: 'Jean',
+                    lname: 'J',
+                    salary: '89989',
+                    age: '50',
+                    department: 'IT',
+                    designation: 'QA'
+                }, {
+                    fname: 'Jean',
+                    lname: 'J',
+                    salary: '89989',
+                    age: '50',
+                    department: 'IT',
+                    designation: 'QA'
+                }, {
+                    fname: 'Jean',
+                    lname: 'J',
+                    salary: '89989',
+                    age: '50',
+                    department: 'IT',
+                    designation: 'QA'
+                }]
+            }, 10000); //milli seconds
+            // Hardcoded data from external sources.
+            // $scope.step = 1;
+
+
+        }])
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{
+    "employees": [{
+            "id": 1001,
+            "fname": "Jhon",
+            "lname": "Collins",
+            "age": 35,
+            "dept": "Sales",
+            "designation": "Manager",
+            "salary": 40000.00,
+            "Location": "Montreal"
+        },
+        {
+            "id": 1021,
+            "fname": "Merry",
+            "lname": "Jackson",
+            "age": 40,
+            "dept": "Finance",
+            "designation": "Accountant",
+            "salary": 35000.00,
+            "Location": "Toronto"
+        },
+        {
+            "id": 2354,
+            "fname": "Samuel",
+            "lname": "Jackson",
+            "age": 46,
+            "dept": "Marketing",
+            "designation": "Marketing Head",
+            "salary": 38400.00,
+            "Location": "Ottawa"
+        },
+        {
+            "id": 3554,
+            "fname": "Sam",
+            "lname": "Rodriguez",
+            "age": 28,
+            "dept": "Quality",
+            "designation": "Quality Analyst",
+            "salary": 58000.00,
+            "Location": "Sherbrooke"
+        },
+        {
+            "id": 1855,
+            "fname": "Mathew",
+            "lname": "Hayden",
+            "age": 33,
+            "dept": "Production",
+            "designation": "Production Manager",
+            "salary": 80000.00,
+            "Location": "Winnipeg"
+        },
+        {
+            "id": 4847,
+            "fname": "Benedict",
+            "lname": "Cumberbatch",
+            "age": 41,
+            "dept": "Shipping",
+            "designation": "Supervisor",
+            "salary": 44000.00,
+            "Location": "Winnipeg"
+        }
+    ]
+}

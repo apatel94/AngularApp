@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+        .center-all {
+            padding: 50%;
+            margin: -8px;
+            width: 16px;
+            height: 16px;
+        }
+        
+        li {
+            text-align: left;
+        }
+        
+        table,
+        th,
+        td {
+            border: 1px solid gray;
+            border-collapse: collapse;
+            padding: 5px;
+            text-align: center;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="getStudentData()">
+    <div class="page-header text-center">
+        <h1> Angular Services Example</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-4">
+                <label>Enter Number one</label>
+                <input type="number" ng-model="num1" /><br />
+                <label>Enter Number two</label>
+                <input type="number" ng-model="num2" />
+                <div>
+                    <input type="submit" value="Add" ng-click="onAdd()" />
+                    <input type="submit" value="Substract" ng-click="onSub()" />
+                    <input type="submit" value="Multiply" ng-click="onMulti()" />
+                </div>
+            </div>
+            <div class="col-xs-8 jumbotron text-center">
+                <h2> {{response}}</h2>
+                <div ng-show="!responseReceived">
+                    <div class="center-all">
+                        <i class="fa fa-spinner fa-spin"></i>
+                        <h3>Accessing database</h3>
+                    </div>
+                </div>
+
+                <div ng-show="responseReceived">
+                    <table>
+                        <tr>
+                            <th> ID </th>
+                            <th> Name</th>
+                            <th> Skill </th>
+                            <th> Status</th>
+                            <th> Location </th>
+                            <th> Additional Skills </th>
+
+                        </tr>
+                        <tr ng-repeat="StudentData in students">
+                            <td>{{StudentData.id}}</td>
+                            <td>{{StudentData.name }}</td>
+                            <td>{{StudentData.Skill}}</td>
+                            <td>{{StudentData.Status}}</td>
+                            <td>{{StudentData.Location}}</td>
+                            <td>
+                                <li ng-repeat="addon in StudentData.AdditionalSkills">{{addon}}</li>
+                            </td>
+
+
+                        </tr>
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+        app.controller('myCtrl', ['$scope', 'mySrv', 'mySrv1', function($scope, mySrv, mySrv1) {
+
+            $scope.getStudentData = function() {
+
+                mySrv1.getStudentsInfo().then(function success(response) {
+                        $scope.responseReceived = true;
+                        console.log(response);
+                        $scope.students = response;
+                    },
+                    function failure() {
+
+
+                    },
+                    function notify() {
+
+                    });
+            }
+
+            $scope.onAdd = function() {
+                //$scope.response =  mySrv.addition($scope.num1, $scope.num2);
+                //mysrv.ashnfn().then(-, -, -);
+                mySrv.addition($scope.num1, $scope.num2).then(function success(res) {
+
+                    $scope.response = res;
+                }, function failure(errorMessage) {
+                    $scope.response = errorMessage;
+                })
+            };
+            $scope.onSub = function() {
+                $scope.response = mySrv.substract($scope.num1, $scope.num2);
+            };
+            $scope.onMulti = function() {
+                $scope.response = mySrv.multiply($scope.num1, $scope.num2);
+            };
+        }])
+    </script>
+    <script src="../Services/mySrv.js"></script>
+    <script src="../Services/mySrv1.js"></script>
+</body>
+
+</html>
