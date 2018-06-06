@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+    <nav class="nav navbar-inverse">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"> E-Commerce Nav Demo</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li class="dropdown" ng-repeat="Mydata in jsonData.actual_data">
+
+                <a class="dropdown-toggle" data-toggle="dropdown" href="">{{Mydata.Header}} <span class="caret"> </span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li ng-repeat="Items in Mydata.Menu"><a href="">{{Items}}</a> </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+    <div ng-view>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.28//angular-route.min.js"></script>
+    <script>
+        var app = angular.module('myApp', ['ngRoute']);
+        app.config(['$routeProvider', function($routeProvider) {
+            $routeProvider.
+            when('', {
+
+            })
+
+        }])
+
+        app.controller('myCtrl', ['$scope', function($scope) {
+
+            $scope.jsonData = {
+                "dummay_data": "no need to display",
+                "actual_data": [{
+                    "Header": "About US",
+                    "Menu": ['Home', 'FAQ'],
+
+                    "key1": "object1_Val1",
+                    "key2": "object1_val2",
+                    "key3": "object1_val3",
+                    "key4": ['array1', 'array2', 'array3'],
+                    "key5": ['abc', 'xyz']
+                }, {
+                    "Header": "Kids",
+                    "Menu": ['Toys', 'Education'],
+
+                    "key1": "object2_Val1",
+                    "key2": "object2_Val2",
+                    "key3": "object2_Val3",
+                    "key4": ['array1', 'array2', 'array3'],
+                    "key5": ['abc', 'xyz']
+                }, {
+                    "Header": "Home",
+                    "Menu": ['Kitchen', 'Bed'],
+
+                    "key1": "object3_Val1",
+                    "key2": "object3_Val2",
+                    "key3": "object3_Val3",
+                    "key4": ['array1', 'array2', 'array3'],
+                    "key5": ['abc', 'xyz']
+                }, {
+                    "Header": "Health",
+                    "Menu": ['Fitness', 'Yoga'],
+
+                    "key1": "object4_Val1",
+                    "key2": "object4_Val2",
+                    "key3": "object4_Val3",
+                    "key4": ['array1', 'array2', 'array3'],
+                    "key5": ['abc', 'xyz']
+                }, {
+                    "Header": "Music & TV Shows",
+                    "Menu": ['Blue-Ray', 'DVD'],
+
+                    "key1": "object5_Val1",
+                    "key2": "object5_Val2",
+                    "key3": "object5_Val3",
+                    "key4": ['array1', 'array2', 'array3'],
+                    "key5": ['abc', 'xyz']
+                }, {
+                    "Header": "Beauty",
+                    "Menu": ['Deo', 'SOAP'],
+
+                    "key1": "object6_Val1",
+                    "key2": "object6_Val2",
+                    "key3": "object6_Val3",
+                    "key4": ['array1', 'array2', 'array3'],
+                    "key5": ['abc', 'xyz']
+                }]
+
+            }
+        }])
+    </script>
+
+
+
+</body>
+
+</html>

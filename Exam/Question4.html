@@ -1,0 +1,113 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl">
+
+    <h1> Angular Custom Filter </h1>
+    <hr />
+    <div class="row">
+        <div class="form-group">
+            <form>
+                <div class="col-md-4">
+                    Enter minimum Price : <input type="text" class="form-control" placeholder="min price" ng-model="filteredobj.minPrice" />
+                </div>
+                <div class="col-md-4">
+                    Enter Maximum Price: <input type="text" class="form-control" placeholder="max price" ng-model="fiteredobj.maxPrice" />
+                </div>
+                <div class="col-md-4">
+                    <input type="button" class="btn btn-primary" value="Search" ng-click="onSearch()" />
+                </div>
+            </form>
+            <span>
+                {{filteredobj.minPrice}}, {{filteredobj.maxPrice}}
+            </span>
+        </div>
+        <br>
+        <table>
+            <tr>
+                <th> ID</th>
+                <th> Price</th>
+            </tr>
+            <tr ng-repeat="pdata in data | myPrice : filteredobj">
+                <td>{{pdata.id}}</td>
+                <td>{{pdata.price}}</td>
+            </tr>
+        </table>
+
+    </div>
+
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', ['$scope', function($scope) {
+            $scope.filteredobj = {};
+            $scope.filteredobj.minPrice = 10000;
+            $scope.filteredobj.maxPrice = 50000;
+
+
+
+            $scope.data = [{
+                "id": 101,
+                "price": 10000
+            }, {
+                "id": 101,
+                "price": 20500
+            }, {
+                "id": 101,
+                "price": 30500
+            }, {
+                "id": 101,
+                "price": 60000
+            }, {
+                "id": 101,
+                "price": 70000
+            }, {
+                "id": 101,
+                "price": 80000
+            }]
+            $scope.onSearch = function() {
+
+            }
+        }]);
+        app.filter('myPrice', function() {
+            return function(data, paramobj) {
+                var temp = [];
+                for (var i = 0; i < data.length; i++) {
+                    if (data[i].price >= paramobj.minPrice && data[i].price <= paramobj.maxPrice) {
+                        temp.push(data[i]);
+                    }
+                }
+                return temp;
+            }
+
+        })
+    </script>
+</body>
+
+</html>

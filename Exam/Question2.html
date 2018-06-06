@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <style>
+        table,
+        th,
+        td {
+            border: 1px solid grey;
+            border-collapse: collapse;
+            padding: 5px;
+        }
+        
+        table tr:nth-child(odd) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #ffffff;
+        }
+    </style>
+    <script src="../node_modules/angular/angular.min.js"></script>
+
+</head>
+
+<body ng-app="myApp" ng-controller="myCtrl" ng-init="getdata()">
+
+
+    <table>
+        <tr>
+            <th> Id</th>
+            <th> Name</th>
+            <th> Skill</th>
+            <th> Status</th>
+            <th> AdditionalSkills</th>
+        </tr>
+        <tr ng-repeat="myData in student.students">
+            <td>{{myData.id}}</td>
+            <td>{{myData.name}}</td>
+            <td>{{myData.Skill}}</td>
+            <td>{{myData.Status}}</td>
+            <td>
+                <ul ng-repeat="myobj in myData.AdditionalSkills">
+                    <li>
+                        {{myobj}}
+                    </li>
+                </ul>
+            </td>
+
+        </tr>
+    </table>
+    <script>
+        var app = angular.module('myApp', []);
+
+        app.controller('myCtrl', ['$scope', '$http', function($scope, $http) {
+
+            $scope.getdata = function() {
+                $http.get('students.json').
+                then(function(response) {
+
+                    $scope.student = response.data;
+
+                })
+            }
+
+
+        }]);
+    </script>
+</body>
+
+</html>
