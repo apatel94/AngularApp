@@ -1,6 +1,10 @@
 # AngularApp
 This is my college assignments repo
 
+change the script sources for bootstrap and AngularJs to CDN links
+
+OR
+
 create a folder node_modules and copy the following folders in it:
 
 /angular and
